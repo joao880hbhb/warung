@@ -1,0 +1,18 @@
+{
+    "sourceFile": "lib/wholesale-pricing.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1788316996624,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1788316996624,
+            "name": "Commit-0",
+            "content": "import type { WholesalePrice } from \"@/lib/database\";\r\n\r\n/**\r\n * Pricing type untuk transaksi.\r\n * NORMAL = menggunakan sell_price produk\r\n * WHOLESALE = menggunakan wholesale_price\r\n */\r\nexport type PricingType = \"NORMAL\" | \"WHOLESALE\";\r\n\r\n/**\r\n * Hasil perhitungan harga akhir produk.\r\n */\r\nexport type PricingResult = {\r\n  normal_price: number;\r\n  wholesale_price: number | null;\r\n  min_qty: number | null;\r\n  final_unit_price: number;\r\n  pricing_type: PricingType;\r\n  wholesale_saving: number;\r\n};\r\n\r\n/**\r\n * Hitung harga final untuk satu item berdasarkan quantity.\r\n *\r\n * Aturan:\r\n * - Jika qty < min_qty atau tidak ada wholesale_price: gunakan normal_price (NORMAL)\r\n * - Jika qty >= min_qty dan ada wholesale_price: gunakan wholesale_price (WHOLESALE)\r\n *\r\n * @param normalPrice harga normal/jual produk (dari products.sell_price)\r\n * @param quantity jumlah item\r\n * @param wholesaleConfig konfigurasi grosir (atau null jika tidak ada)\r\n * @returns hasil perhitungan harga\r\n */\r\nexport function calculateFinalPrice(\r\n  normalPrice: number,\r\n  quantity: number,\r\n  wholesaleConfig: WholesalePrice | null | undefined,\r\n): PricingResult {\r\n  if (!wholesaleConfig || quantity < wholesaleConfig.min_qty) {\r\n    // Gunakan harga normal\r\n    return {\r\n      normal_price: normalPrice,\r\n      wholesale_price: wholesaleConfig?.wholesale_price ?? null,\r\n      min_qty: wholesaleConfig?.min_qty ?? null,\r\n      final_unit_price: normalPrice,\r\n      pricing_type: \"NORMAL\",\r\n      wholesale_saving: 0,\r\n    };\r\n  }\r\n\r\n  // Gunakan harga grosir\r\n  const wholesaleSaving = normalPrice - wholesaleConfig.wholesale_price;\r\n  return {\r\n    normal_price: normalPrice,\r\n    wholesale_price: wholesaleConfig.wholesale_price,\r\n    min_qty: wholesaleConfig.min_qty,\r\n    final_unit_price: wholesaleConfig.wholesale_price,\r\n    pricing_type: \"WHOLESALE\",\r\n    wholesale_saving: wholesaleSaving,\r\n  };\r\n}\r\n\r\n/**\r\n * Hitung subtotal (quantity * unit_price).\r\n */\r\nexport function calculateSubtotal(\r\n  unitPrice: number,\r\n  quantity: number,\r\n): number {\r\n  return Math.round(unitPrice * quantity);\r\n}\r\n"
+        }
+    ]
+}

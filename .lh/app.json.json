@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1788589362893,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1788589362893,
+            "name": "Commit-0",
+            "content": "{\n  \"expo\": {\n    \"name\": \"Kasir Kita\",\n    \"slug\": \"kasir-kita\",\n    \"version\": \"1.0.0\",\n    \"orientation\": \"portrait\",\n    \"icon\": \"./assets/images/icon.png\",\n    \"scheme\": \"kasirkita\",\n    \"userInterfaceStyle\": \"automatic\",\n    \"newArchEnabled\": true,\n    \"ios\": {\n      \"supportsTablet\": true,\n      \"bundleIdentifier\": \"com.kasirkita.app\"\n    },\n    \"android\": {\n      \"package\": \"com.kasirkita.app\",\n      \"adaptiveIcon\": {\n        \"backgroundColor\": \"#E6F4FE\",\n        \"foregroundImage\": \"./assets/images/android-icon-foreground.png\",\n        \"backgroundImage\": \"./assets/images/android-icon-background.png\",\n        \"monochromeImage\": \"./assets/images/android-icon-monochrome.png\"\n      },\n      \"edgeToEdgeEnabled\": true,\n      \"predictiveBackGestureEnabled\": false,\n      \"permissions\": [\n        \"android.permission.BLUETOOTH\",\n        \"android.permission.BLUETOOTH_ADMIN\",\n        \"android.permission.BLUETOOTH_CONNECT\",\n        \"android.permission.BLUETOOTH_SCAN\",\n        \"android.permission.ACCESS_FINE_LOCATION\"\n      ]\n    },\n    \"web\": {\n      \"output\": \"static\",\n      \"favicon\": \"./assets/images/favicon.png\"\n    },\n    \"plugins\": [\n      \"expo-router\",\n      [\n        \"expo-splash-screen\",\n        {\n          \"image\": \"./assets/images/logo/logo.jpeg\",\n          \"imageWidth\": 200,\n          \"resizeMode\": \"contain\",\n          \"backgroundColor\": \"#ffffff\",\n          \"dark\": {\n            \"backgroundColor\": \"#000000\"\n          }\n        }\n      ],\n      \"expo-sqlite\",\n      \"expo-dev-client\"\n    ],\n    \"experiments\": {\n      \"typedRoutes\": true,\n      \"reactCompiler\": true\n    },\n    \"extra\": {\n      \"router\": {},\n      \"eas\": {\n        \"projectId\": \"31bca9f8-f2a8-444d-a37f-35427bfed3da\"\n      }\n    },\n    \"owner\": \"kasirflows-team\"\n  }\n}\n"
+        }
+    ]
+}

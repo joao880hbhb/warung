@@ -1,0 +1,34 @@
+{
+    "sourceFile": "app/welcome.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1788381934366,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1788381952424,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n           </View>\n \n           <View>\n             <Image\n-              source={require(\"@/assets/images/asset vector/asset 1.png\")}\n+              source={require(\"@/assets/images/logopos.webp\")}\n               style={styles.brandImage}\n               resizeMode=\"contain\"\n             />\n           </View>\n"
+                },
+                {
+                    "date": 1788381970245,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n           </View>\n \n           <View>\n             <Image\n-              source={require(\"@/assets/images/logopos.webp\")}\n+              source={require(\"@/assets/images/logo/logopos.webp\")}\n               style={styles.brandImage}\n               resizeMode=\"contain\"\n             />\n           </View>\n"
+                },
+                {
+                    "date": 1788381993017,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n           </View>\n \n           <View>\n             <Image\n-              source={require(\"@/assets/images/logo/logopos.webp\")}\n+              source={require(\"@/assets/images/logo/logoumkmpos.webp\")}\n               style={styles.brandImage}\n               resizeMode=\"contain\"\n             />\n           </View>\n"
+                },
+                {
+                    "date": 1788382094120,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,11 +51,11 @@\n             <Text style={styles.logo}>UMKM POS</Text>\n             <Text style={styles.tagline}>Kasir pintar untuk usahamu</Text>\n           </View>\n \n-          <View>\n+          <View> \n             <Image\n-              source={require(\"@/assets/images/logo/logoumkmpos.webp\")}\n+              source={require(\"@/assets/images/logo/logoumkmpos-remove.webp\")}\n               style={styles.brandImage}\n               resizeMode=\"contain\"\n             />\n           </View>\n"
+                }
+            ],
+            "date": 1788381934366,
+            "name": "Commit-0",
+            "content": "import { useRouter } from \"expo-router\";\nimport React from \"react\";\nimport {\n  ActivityIndicator,\n  Image,\n  ImageBackground,\n  Pressable,\n  StyleSheet,\n  Text,\n  View,\n} from \"react-native\";\nimport { SafeAreaView } from \"react-native-safe-area-context\";\n\nimport { Colors } from \"@/constants/theme\";\nimport { hasUsers, initDatabase } from \"@/lib/database\";\n\nexport default function WelcomeScreen() {\n  const router = useRouter();\n  const [checking, setChecking] = React.useState(true);\n\n  React.useEffect(() => {\n    (async () => {\n      try {\n        await initDatabase();\n      } catch {\n        // tetap di welcome jika error\n      } finally {\n        setChecking(false);\n      }\n    })();\n  }, []);\n\n  const handleStart = async () => {\n    const exists = await hasUsers();\n    if (exists) {\n      router.push(\"/users\");\n    } else {\n      router.push(\"/owner-setup\");\n    }\n  };\n\n  return (\n    <ImageBackground\n      source={require(\"@/assets/images/bg-awal1.webp\")}\n      style={styles.background}\n      resizeMode=\"cover\"\n    >\n      <SafeAreaView style={styles.safeArea}>\n        <View style={styles.content}>\n          <View style={styles.brand}>\n            <Text style={styles.logo}>UMKM POS</Text>\n            <Text style={styles.tagline}>Kasir pintar untuk usahamu</Text>\n          </View>\n\n          <View>\n            <Image\n              source={require(\"@/assets/images/asset vector/asset 1.png\")}\n              style={styles.brandImage}\n              resizeMode=\"contain\"\n            />\n          </View>\n\n          <View style={styles.footer}>\n            {checking ? (\n              <View style={styles.loadingBox}>\n                <ActivityIndicator color={Colors.primary} size=\"large\" />\n              </View>\n            ) : (\n              <Pressable\n                style={({ pressed }) => [\n                  styles.button,\n                  pressed && styles.buttonPressed,\n                ]}\n                onPress={handleStart}\n              >\n                <Text style={styles.buttonText}>Mulai Sekarang</Text>\n              </Pressable>\n            )}\n          </View>\n        </View>\n      </SafeAreaView>\n    </ImageBackground>\n  );\n}\n\nconst styles = StyleSheet.create({\n  background: {\n    flex: 1,\n  },\n  safeArea: {\n    flex: 1,\n  },\n  content: {\n    flex: 1,\n    justifyContent: \"space-between\",\n    paddingHorizontal: 24,\n    paddingVertical: 32,\n  },\n  brand: {\n    marginTop: 64,\n    alignItems: \"center\",\n  },\n  brandImage: {\n    width: 340,\n    height: 340,\n    marginBottom: 12,\n  },\n  logo: {\n    fontSize: 48,\n    fontWeight: \"800\",\n    color: Colors.white,\n    letterSpacing: 1,\n  },\n  tagline: {\n    marginTop: 8,\n    fontSize: 16,\n    color: \"#ffffff\",\n    textAlign: \"center\",\n  },\n  footer: {\n    justifyContent: \"flex-end\",\n  },\n  loadingBox: {\n    height: 56,\n    alignItems: \"center\",\n    justifyContent: \"center\",\n  },\n  button: {\n    backgroundColor: \"#ffff\",\n    height: 56,\n    borderRadius: 28,\n    alignItems: \"center\",\n    justifyContent: \"center\",\n    shadowColor: Colors.primary,\n    shadowOpacity: 0.4,\n    shadowRadius: 12,\n    shadowOffset: { width: 0, height: 6 },\n    elevation: 6,\n  },\n  buttonPressed: {\n    opacity: 0.85,\n    transform: [{ scale: 0.98 }],\n  },\n  buttonText: {\n    color: Colors.primary,\n    fontSize: 18,\n    fontWeight: \"700\",\n  },\n});\n"
+        }
+    ]
+}

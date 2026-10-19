@@ -1,0 +1,26 @@
+{
+    "sourceFile": "app/index.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1788211329640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1788211335958,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n   },\n   tagline: {\n     marginTop: 8,\n     fontSize: 16,\n-    color: \"#ffff\",\n+    color: \"#ffffff\",\n     textAlign: \"center\",\n   },\n   footer: {\n     justifyContent: \"flex-end\",\n"
+                },
+                {
+                    "date": 1788211389734,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n   footer: {\n     justifyContent: \"flex-end\",\n   },\n   button: {\n-    backgroundColor: \"#3ECA30\",\n+    backgroundColor: \"#ffff\",\n     height: 56,\n     borderRadius: 28,\n     alignItems: \"center\",\n     justifyContent: \"center\",\n"
+                }
+            ],
+            "date": 1788211329640,
+            "name": "Commit-0",
+            "content": "import { useRouter } from 'expo-router';\nimport { ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';\nimport { SafeAreaView } from 'react-native-safe-area-context';\n\nimport { Colors } from '@/constants/theme';\n\nexport default function WelcomeScreen() {\n  const router = useRouter();\n\n  return (\n    <ImageBackground\n      source={require('@/assets/images/bg-awal.jpg')}\n      style={styles.background}\n      resizeMode=\"cover\">\n      <SafeAreaView style={styles.safeArea}>\n        <View style={styles.content}>\n          <View style={styles.brand}>\n            <Text style={styles.logo}>Warungku</Text>\n            <Text style={styles.tagline}>Kasir warung pintar untuk usahamu</Text>\n          </View>\n\n          <View style={styles.footer}>\n            <Pressable\n              style={({ pressed }) => [\n                styles.button,\n                pressed && styles.buttonPressed,\n              ]}\n              onPress={() => router.replace('/(tabs)')}>\n              <Text style={styles.buttonText}>Mulai Sekarang</Text>\n            </Pressable>\n          </View>\n        </View>\n      </SafeAreaView>\n    </ImageBackground>\n  );\n}\n\nconst styles = StyleSheet.create({\n  background: {\n    flex: 1,\n  },\n  safeArea: {\n    flex: 1,\n  },\n  content: {\n    flex: 1,\n    justifyContent: 'space-between',\n    paddingHorizontal: 24,\n    paddingVertical: 32,\n  },\n  brand: {\n    marginTop: 64,\n    alignItems: 'center',\n  },\n  logo: {\n    fontSize: 48,\n    fontWeight: '800',\n    color: Colors.primary,\n    letterSpacing: 1,\n  },\n  tagline: {\n    marginTop: 8,\n    fontSize: 16,\n    color: '#ffff',\n    textAlign: 'center',\n  },\n  footer: {\n    justifyContent: 'flex-end',\n  },\n  button: {\n    backgroundColor: '#3ECA30',\n    height: 56,\n    borderRadius: 28,\n    alignItems: 'center',\n    justifyContent: 'center',\n    shadowColor: Colors.primary,\n    shadowOpacity: 0.4,\n    shadowRadius: 12,\n    shadowOffset: { width: 0, height: 6 },\n    elevation: 6,\n  },\n  buttonPressed: {\n    opacity: 0.85,\n    transform: [{ scale: 0.98 }],\n  },\n  buttonText: {\n    color: Colors.white,\n    fontSize: 18,\n    fontWeight: '700',\n  },\n});\n"
+        }
+    ]
+}
